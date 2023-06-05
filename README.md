@@ -1,9 +1,22 @@
 # shelfDetector
 
-App that determine bounding boxes of products on shelves
+Приложение определяет bounding boxes продуктов на полках, используя tensorFlow модель.
+
+Класс SDetector является моделью. Он работает на основе Interpreter из tensorflow.lite. MainViewModel получает данные и обрабатывает их, два фрагмента: PhotoFragment и CameraFragment слушают изменения.
+
+DetectionsView рисует bounding boxes. Красным выделяются товары, зеленым - полки.
+
+### Галлерея:
+
+![Screenshot_20230605-161007_Shelf detector](https://github.com/dkkdark/shelfDetector/assets/49618961/01a8c32d-5bc8-42b4-885d-4ce90957139c)
 
 
-### Gallery:
+![Screenshot_20230605-161025_Shelf detector](https://github.com/dkkdark/shelfDetector/assets/49618961/035967ed-c3c3-4713-b9ff-45e90cb06c0a)
 
-![Screenshot_20230605-161007_Shelf](https://github.com/dkkdark/shelfDetector/assets/49618961/b764715c-e8ae-4e59-9a3e-53e2699d14ad)
 
+![Screenshot_20230605-161045_Shelf detector](https://github.com/dkkdark/shelfDetector/assets/49618961/ef6eeb44-5362-4ccb-b2fc-1ae04f7dbdcd)
+
+
+### Камера и зум (gif):
+
+![YouCut_20230605_174218959-2-min](https://github.com/dkkdark/shelfDetector/assets/49618961/835f3ec8-1189-4ad1-b465-490a18218bd8)
