@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/cameraFragment">
+
+    <fragment
+        android:id="@+id/photoFragment"
+        android:name="com.kseniabl.shelfdetector.ui.PhotoFragment"
+        android:label="PhotoFragment" >
+        <action
+            android:id="@+id/action_photoFragment_to_cameraFragment"
+            app:destination="@id/cameraFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/cameraFragment"
+        android:name="com.kseniabl.shelfdetector.ui.CameraFragment"
+        android:label="CameraFragment" >
+        <action
+            android:id="@+id/action_cameraFragment_to_photoFragment"
+            app:destination="@id/photoFragment" />
+    </fragment>
+</navigation>

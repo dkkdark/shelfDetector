@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Shelf detector</string>
+
+    <string name="camera_rationale">Granting the camera permission</string>
+    <string name="rationale_ask_ok">OK</string>
+    <string name="rationale_ask_cancel">No thanks</string>
+    <string name="camera_message">Do you want to allow camera usage in this app?</string>
+    <string name="camera">camera</string>
+    <string name="gallery">gallery</string>
+</resources>
