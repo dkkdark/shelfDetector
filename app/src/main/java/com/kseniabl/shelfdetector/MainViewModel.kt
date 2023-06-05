@@ -24,12 +24,14 @@ class MainViewModel(
         sDetector = SDetector(assetManager = assets, this)
     }
 
+    // Error from sDetector
     override fun onModelError(message: String) {
         viewModelScope.launch {
             _state.emit(UIActions.ShowSnackbar(message))
         }
     }
 
+    // Success result from sDetector
     override fun onModelResult(image: Bitmap?, detectionsCount: IntArray, boxesTensor: FloatArray) {
         val rects = getRects(detectionsCount, boxesTensor)
         viewModelScope.launch {
@@ -37,14 +39,17 @@ class MainViewModel(
         }
     }
 
+    // Detect bounding boxes
     fun detect(bitmap: Bitmap) {
         sDetector.detect(bitmap)
     }
 
+    // Close Detector in MainActivity
     fun close() {
         sDetector.close()
     }
 
+    // Convert data from output. Get coordinates.
     private fun getRects(detectionsCountArray: IntArray, boxesTensor: FloatArray): List<SDetector.Rectangle> {
         var detectionsCount = 0
         detectionsCountArray.forEach { count ->

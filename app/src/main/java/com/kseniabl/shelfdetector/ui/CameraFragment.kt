@@ -162,6 +162,7 @@ class CameraFragment: Fragment(), UIElements.AlertDialogChoices {
         }
     }
 
+    // enable zoom by gesture
     private fun enableZoom() {
         val scaleGestureDetector = ScaleGestureDetector(requireContext(), scaleListener)
         binding.previewView.setOnTouchListener { view, motionEvent ->

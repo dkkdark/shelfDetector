@@ -21,7 +21,6 @@ class DetectionsView @JvmOverloads constructor(
     private val shelves: MutableList<RectF> = mutableListOf()
     private var topPadding = 0f
     private var leftPadding = 0f
-    private var image: Bitmap? = null
 
     private val boundingBoxesPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
         style = Paint.Style.STROKE
@@ -35,14 +34,24 @@ class DetectionsView @JvmOverloads constructor(
         color = Color.GREEN
     }
 
-    fun setBoundingBoxes(boundingBoxes: List<SDetector.Rectangle>, image: Bitmap) {
-        this.boundingBoxes.clear()
-        this.shelves.clear()
-        boundingBoxes.forEach {
+    fun setBoundingBoxes(list: List<SDetector.Rectangle>, image: Bitmap) {
+        boundingBoxes.clear()
+        shelves.clear()
+
+        boundingBoxesDetection(list, image)
+        if (boundingBoxes.size > 2) {
+            shelfDetection()
+        }
+
+        postInvalidate()
+    }
+
+    // Multiple coordinates by the image width/height and by the scale by which the image was enlarged
+    private fun boundingBoxesDetection(list: List<SDetector.Rectangle>, image: Bitmap) {
+        list.forEach {
             val scale = getScale(image)
-            this.image = image
-            this.topPadding = (height - image.height * scale) / 2
-            this.leftPadding =  (width - image.width * scale) / 2
+            topPadding = (height - image.height * scale) / 2
+            leftPadding =  (width - image.width * scale) / 2
 
             val left = it.left * image.width * scale
             val right = it.right * image.width * scale
@@ -50,13 +59,8 @@ class DetectionsView @JvmOverloads constructor(
             val bottom = it.bottom * image.height * scale
 
             val rec = RectF(left, top, right, bottom)
-            this.boundingBoxes.add(rec)
+            boundingBoxes.add(rec)
         }
-        if (boundingBoxes.size > 2) {
-            shelfDetection()
-        }
-
-        postInvalidate()
     }
 
     private fun getScale(image: Bitmap): Float {
@@ -65,6 +69,9 @@ class DetectionsView @JvmOverloads constructor(
         return min(xScale, yScale)
     }
 
+    // Divide the elements into groups in which their top differs by no more than 110 px.
+    // So we get elements in one shelf and then we find Rect of these shelves by
+    // min values in list of left and top and max values of right and bottom
     private fun shelfDetection() {
         val sortedBoxes = boundingBoxes.sortedBy { it.top }
         val groups = mutableListOf(mutableListOf(sortedBoxes[0]))

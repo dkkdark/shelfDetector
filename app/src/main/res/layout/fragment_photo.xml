@@ -28,8 +28,8 @@
 
     <ImageView
         android:id="@+id/closeButton"
-        android:layout_width="12dp"
-        android:layout_height="12dp"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
         android:contentDescription="@null"
         android:src="@drawable/close"
         android:layout_margin="18dp"
