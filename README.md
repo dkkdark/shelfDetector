@@ -6,7 +6,7 @@
 
 DetectionsView рисует bounding boxes. Красным выделяются товары, зеленым - полки.
 
-### Галлерея:
+### Галерея:
 
 ![Screenshot_20230605-161007_Shelf detector](https://github.com/dkkdark/shelfDetector/assets/49618961/01a8c32d-5bc8-42b4-885d-4ce90957139c)
 
