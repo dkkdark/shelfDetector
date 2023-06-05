@@ -1,6 +1,6 @@
 # shelfDetector
 
-Приложение определяет bounding boxes продуктов на полках, используя tensorFlow модель.
+Приложение определяет bounding boxes продуктов на полках, используя tensorFlow lite.
 
 Класс SDetector является моделью. Он работает на основе Interpreter из tensorflow.lite. MainViewModel получает данные и обрабатывает их, два фрагмента: PhotoFragment и CameraFragment слушают изменения.
 
